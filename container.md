@@ -22,9 +22,7 @@ Linux 操作系统不外乎是进程管理、内存管理、文件系统、网�
 
 ![image-20220307232513073](pic/image-20220307232513073.png)
 
-
-
-![](https://raw.githubusercontent.com/vapour1024/ContainerGeekNotes/main/img20220308003103.png)解决容器问题需要一个态度 + 两个步骤
+解决容器问题需要一个态度 + 两个步骤
 
 - 态度：不要浅尝辄止，要刨根问底，找到根本原因为止
 
