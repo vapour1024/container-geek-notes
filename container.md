@@ -361,7 +361,7 @@ cat /proc/sys/net/ipv4/tcp_keepalive_time
 
 图里展示的是容器有自己的 Network Namespace，eth0 是这个 Network Namespace 里的网络接口。而宿主机上也有自己的 eth0，宿主机上的 eth0 对应着真正的物理网卡，可以和外面通讯
 
-![image-20220305114132851](pic/image-20220305114132851.png)
+<img src="pic/image-20220305114132851.png" alt="image-20220305114132851" style="zoom:67%;" />
 
 那你可以先想想，我们要让容器 Network Namespace 中的数据包最终发送到物理网卡
 上，需要完成哪些步骤呢？从图上看，我们大致可以知道应该包括这两步。
@@ -450,7 +450,7 @@ Network Namespace 发送到 Host Network Namespace 上。
 
 Docker 缺省使用的是 bridge + nat 的转发，下面来手动实现一下
 
-![image-20220305162516353](pic/image-20220305162516353.png)
+<img src="pic/image-20220305162516353.png" alt="image-20220305162516353" style="zoom:80%;" />
 
 从这张示意图中，我们可以看出来，容器和 docker0 组成了一个子网，docker0 上的 IP
 就是这个子网的网关 IP。
@@ -528,7 +528,7 @@ ip netns exec $pid1 ip link set eth0 up
 
 两个容器配置好之后，就像下面图中描述的一样了。从这张图里，你很容易就能看出macvlan/ipvlan 与 veth 网络配置有什么不一样。容器的虚拟网络接口，直接连接在了宿主机的物理网络接口上了，形成了一个网络二层的连接。
 
-![image-20220305170928976](pic/image-20220305170928976.png)
+<img src="pic/image-20220305170928976.png" alt="image-20220305170928976" style="zoom:80%;" />
 
 如果从容器里向宿主机外发送数据，看上去通过的接口要比 veth 少了，那么实际情况是不是这呢？ipvlan 接口的发送数据代码中，我们可以看到，如果是往宿主机外发送数据，发送函数会直接找到 ipvlan 虚拟接口对应的物理网络接口。
 
